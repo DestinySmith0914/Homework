@@ -14,7 +14,7 @@ function greetCustomer() {
 function getPizzaOrder(size, toppings, ...crust) {
   let toppingsList = toppings.join(", ");
   console.log(
-    `One ${size} ${crust} crust pizza with ${toppingsList} is on its way!`
+    `One ${size} ${crust} crust pizza with ${toppingsList} coming up!`
   );
   return [size, crust, toppings];
 }
