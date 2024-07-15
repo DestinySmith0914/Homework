@@ -26,7 +26,7 @@ function preparePizza(order) {
 
   function servePizza(pizza) {
     let toppingsList = pizza.toppings.join (", ");
-    console.log(`All done! Your ${pizza.size} ${pizza.crust} crust pizza with ${toppingsList} is ready!`);
+    console.log(`Order up! Here is your ${pizza.size} ${pizza.crust} crust pizza with ${toppingsList} . Enjoy!`);
     return pizza;
   }
 
