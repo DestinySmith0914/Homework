@@ -1,36 +1,45 @@
 let pizzaToppings = ["Bacon", "sausage", "cheese", "pepperoni"];
 
 function greetCustomer() {
-  console.log("welcome to Pizza House! Our available toppings are:");
-  for (let i = 0; i < pizzaToppings.length; i++) {
-    if (i === pizzaToppings.length - 1) {
-      console.log("and" + pizzaToppings[i] + ".");
-    } else {
-      console.log(pizzaToppings[i] + ",");
-    }
+  let message = "Welcome to pizza house, our toppings are:";
+
+  for (let topping of pizzaToppings) {
+    message += `${topping}, `;
   }
+  console.log(message);
 }
 
-function getPizzaOrder(size, toppings, ...crust) {
-  let toppingsList = toppings.join(", ");
-  console.log(
-    `One ${size} ${crust} crust pizza with ${toppingsList} is on its way!`
-  );
+greetCustomer();
+
+function getPizzaOrder(size, crust, ...toppings) {
+  let order = `One ${size} ${crust} crust with `;
+  for (let topping of toppings) {
+    order += `${topping}, `;
+  }
+  order += "...coming up!";
+  console.log(order);
   return [size, crust, toppings];
 }
 
-function preparePizza(order) {
+function preparePizza([size, crust, toppings]) {
   console.log("...Making your pizza");
-  let [size, crust, toppings] = order;
-  return { size, crust, toppings };
+  return {
+    size: size,
+    crust: crust,
+    toppings: toppings
+  };
+}
 
-  function servePizza(pizza) {
-    let toppingsList = pizza.toppings.join (", ");
-    console.log(`All done! Your ${pizza.size} ${pizza.crust} crust pizza with ${toppingsList} is ready!`);
-    return pizza;
+function servePizza(pizza) {
+  let message = `Order up! Here's your ${pizza.size} ${pizza.crust} crust pizza with `;
+
+  for (let topping of pizza.toppings) {
+    message += `${topping}, `;
   }
+  message += "...Enjoy!";
 
-greetCustomer();
-let order = getPizzaOrder("large", "thick", "pepperoni", "bacon", "mushrooms");
-let preparePizza = preparePizza(order);
-servePizza(preparePizza);
+  console.log(message);
+  return pizza;
+}
+
+servePizza(preparePizza(getPizzaOrder("large", "thick", "bacon", "sausage")));
